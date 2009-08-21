@@ -4,10 +4,14 @@
 -export([start/2,stop/1]).
 
 start(_Type, _StartArgs) ->
+    RpcContext = case application:get_env(?MODULE, context) of
+                     undefined -> "rpc";
+                     {ok, V} -> V
+                 end,
     rabbit_mochiweb:register_context_handler(
-        "rpc",
+        RpcContext,
         fun(Req) ->
-            case rfc4627_jsonrpc_mochiweb:handle("/rpc", Req) of
+            case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext, Req) of
                 no_match ->
                     Req:not_found();
                 {ok, Response} ->
