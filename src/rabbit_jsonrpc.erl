@@ -17,7 +17,7 @@ start(_Type, _StartArgs) ->
                 {ok, Response} ->
                     Req:respond(Response)
             end
-        end),
+        end, none),
     {ok, spawn(fun loop/0)}.
 
 stop(_State) ->
