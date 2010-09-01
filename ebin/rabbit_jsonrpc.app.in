@@ -1,6 +1,6 @@
 {application, rabbit_jsonrpc,
  [{description, "Rabbit JSON-RPC"},
-  {vsn, "0.01"},
+  {vsn, "%%VSN%%"},
   {modules, [
     rabbit_jsonrpc
   ]},
