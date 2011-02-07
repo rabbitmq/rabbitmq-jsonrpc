@@ -2,5 +2,6 @@
 ^server_root/logs/(access|error|security)_log$
 ^ebin/httpd\.conf\.tmp$
 ^tmp
-^build/
 ^dist/
+^deps.mk$
+^ebin/rabbit_jsonrpc.app$
