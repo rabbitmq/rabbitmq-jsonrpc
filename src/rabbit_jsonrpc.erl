@@ -9,6 +9,7 @@ start(_Type, _StartArgs) ->
                      {ok, V} -> V
                  end,
     rabbit_mochiweb:register_context_handler(
+        jsonrpc,
         RpcContext,
         fun(Req) ->
             case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext, Req) of
