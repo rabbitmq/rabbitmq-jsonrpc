@@ -18,7 +18,7 @@ start(_Type, _StartArgs) ->
                 {ok, Response} ->
                     Req:respond(Response)
             end
-        end, none),
+        end, "JSON-RPC: RPC endpoint"),
     {ok, spawn(fun loop/0)}.
 
 stop(_State) ->
