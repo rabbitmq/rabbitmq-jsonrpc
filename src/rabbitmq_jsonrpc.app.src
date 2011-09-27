@@ -5,4 +5,4 @@
   {registered, []},
   {mod, {rabbit_jsonrpc, []}},
   {env, []},
-  {applications, [kernel, stdlib, rabbitmq_mochiweb]}]}.
+  {applications, [kernel, stdlib, rabbitmq_mochiweb, webmachine, rfc4627_jsonrpc]}]}.
