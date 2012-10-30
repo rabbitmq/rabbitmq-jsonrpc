@@ -17,7 +17,7 @@
 -module(rabbit_jsonrpc).
 
 -behaviour(application).
--export([start/2,stop/1]).
+-export([start/2, stop/1, listener/0]).
 
 start(_Type, _StartArgs) ->
     RpcContext = case application:get_env(?MODULE, context) of
@@ -25,9 +25,8 @@ start(_Type, _StartArgs) ->
                      {ok, V} -> V
                  end,
     rabbit_mochiweb:register_context_handler(
-        jsonrpc,
-        RpcContext,
-        fun(_, Req) ->
+        jsonrpc, listener(), RpcContext,
+        fun(Req) ->
             case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext, Req) of
                 no_match ->
                     Req:not_found();
@@ -45,3 +44,7 @@ loop() ->
   receive
     _ -> loop()
   end.
+
+listener() ->
+    {ok, Listener} = application:get_env(rabbitmq_jsonrpc, listener),
+    Listener.

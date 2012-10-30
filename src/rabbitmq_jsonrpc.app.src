@@ -4,5 +4,5 @@
   {modules, []},
   {registered, []},
   {mod, {rabbit_jsonrpc, []}},
-  {env, []},
+  {env, [{listener, [{port, 55670}]}]},
   {applications, [kernel, stdlib, rabbitmq_mochiweb, rfc4627_jsonrpc]}]}.
