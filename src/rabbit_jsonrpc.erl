@@ -24,8 +24,15 @@ start(_Type, _StartArgs) ->
                      undefined -> "rpc";
                      {ok, V} -> V
                  end,
+    Listener = listener(),
+    if_redirect(
+      fun () ->
+              rabbit_mochiweb:register_port_redirect(
+                jsonrpc_redirect, [{port,          55670},
+                                   {ignore_in_use, true}], "", port(Listener))
+      end),
     rabbit_mochiweb:register_context_handler(
-        jsonrpc, listener(), RpcContext,
+        jsonrpc, Listener, RpcContext,
         fun(Req) ->
             case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext, Req) of
                 no_match ->
@@ -37,6 +44,8 @@ start(_Type, _StartArgs) ->
     {ok, spawn(fun loop/0)}.
 
 stop(_State) ->
+    if_redirect(
+      fun () -> rabbit_mochiweb:unregister_context(jsonrpc_redirect) end),
     rabbit_mochiweb:unregister_context(jsonrpc),
     ok.
 
@@ -48,3 +57,13 @@ loop() ->
 listener() ->
     {ok, Listener} = application:get_env(rabbitmq_jsonrpc, listener),
     Listener.
+
+if_redirect(Thunk) ->
+    {ok, Redir} = application:get_env(rabbitmq_jsonrpc, redirect_old_port),
+    case Redir of
+        true  -> Thunk();
+        false -> ok
+    end.
+
+port(Listener) ->
+    proplists:get_value(port, Listener).
