@@ -73,10 +73,10 @@ All that aside, once the server starts successfully, including a
 "...done" for the "starting HTTP-JSON-listeners" line, you should be
 able to visit
 
-  http://localhost:55672/
+  http://localhost:15670/
 
 and get a webpage. Clicking on "Simple JSONRPC test" will run a small
-test application. Successful output of http://localhost:55672/test/index.html
+test application. Successful output of http://localhost:15670/test/index.html
 at the time of writing is:
 
   test_main
