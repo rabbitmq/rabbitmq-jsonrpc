@@ -32,11 +32,11 @@ start(_Type, _StartArgs) ->
     Listener = listener(),
     if_redirect(
       fun () ->
-              rabbit_mochiweb:register_port_redirect(
+              rabbit_web_dispatch:register_port_redirect(
                 jsonrpc_redirect, [{port,          55670},
                                    {ignore_in_use, true}], "", port(Listener))
       end),
-    rabbit_mochiweb:register_context_handler(
+    rabbit_web_dispatch:register_context_handler(
         jsonrpc, Listener, RpcContext,
         fun(Req) ->
             case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext, Req) of
@@ -50,8 +50,8 @@ start(_Type, _StartArgs) ->
 
 stop(_State) ->
     if_redirect(
-      fun () -> rabbit_mochiweb:unregister_context(jsonrpc_redirect) end),
-    rabbit_mochiweb:unregister_context(jsonrpc),
+      fun () -> rabbit_web_dispatch:unregister_context(jsonrpc_redirect) end),
+    rabbit_web_dispatch:unregister_context(jsonrpc),
     ok.
 
 init([]) -> {ok, {{one_for_one, 3, 10}, []}}.
