@@ -1,6 +1,6 @@
 {application, rabbitmq_jsonrpc,
  [{description, "Rabbit JSON-RPC"},
-  {vsn, "%%VSN%%"},
+  {vsn, ""},
   {modules, []},
   {registered, []},
   {mod, {rabbit_jsonrpc, []}},
