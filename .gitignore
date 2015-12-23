@@ -1,0 +1,5 @@
+/.erlang.mk/
+/ebin/
+/plugins/
+/rabbitmq_jsonrpc.d
+*.swp
