@@ -1,7 +1,7 @@
 PROJECT = rabbitmq_jsonrpc
 
 DEPS = rabbitmq_web_dispatch rfc4627_jsonrpc
-dep_rfc4627_jsonrpc = git https://github.com/rabbitmq/erlang-rfc4627 ad844f42c694ade82db345c7f4f5bbad32e23b13
+dep_rfc4627_jsonrpc = git_rmq erlang-rfc4627 master
 
 DEP_PLUGINS = rabbit_common/mk/rabbitmq-plugin.mk
 
