@@ -11,7 +11,7 @@
 %% The Original Code is RabbitMQ.
 %%
 %% The Initial Developer of the Original Code is GoPivotal, Inc.
-%% Copyright (c) 2007-2013 GoPivotal, Inc.  All rights reserved.
+%% Copyright (c) 2007-2015 GoPivotal, Inc.  All rights reserved.
 %%
 
 -module(rabbit_jsonrpc).
@@ -33,19 +33,12 @@ start(_Type, _StartArgs) ->
     if_redirect(
       fun () ->
               rabbit_web_dispatch:register_port_redirect(
-                jsonrpc_redirect, [{port,          55670},
-                                   {ignore_in_use, true}], "", port(Listener))
+                jsonrpc_redirect, [{port, 55670}], "", port(Listener))
       end),
     rabbit_web_dispatch:register_context_handler(
         jsonrpc, Listener, RpcContext,
-        fun(Req) ->
-            case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext, Req) of
-                no_match ->
-                    Req:not_found();
-                {ok, Response} ->
-                    Req:respond(Response)
-            end
-        end, "JSON-RPC: RPC endpoint"),
+        cowboy_router:compile([{'_', [{'_', rabbit_jsonrpc_handler, RpcContext}]}]),
+        "JSON-RPC: RPC endpoint"),
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 stop(_State) ->
