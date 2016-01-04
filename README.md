@@ -1,3 +1,14 @@
+# RabbitMQ JSON RPC Plugin
+
+This plugin is deprecated and is not under active development. Team RabbitMQ recommends
+against its use.
+
+## Binary Builds
+
+Available from the [Community Plugins archive](http://www.rabbitmq.com/community-plugins/).
+
+## Building From Source (RabbitMQ 3.5.x)
+
 You will need:
 
  - GNU make
