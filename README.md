@@ -6,7 +6,7 @@ against** its use.
 ## Binary Builds
 
 Available from the [Community Plugins archive](http://www.rabbitmq.com/community-plugins/),
-as well as its dependency, `erlang-rfc4627`.
+as well as its dependency, [erlang-rfc4627]().
 
 ## Building From Source (RabbitMQ 3.5.x)
 
