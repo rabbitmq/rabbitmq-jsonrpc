@@ -1,7 +1,7 @@
 # RabbitMQ JSON RPC Plugin
 
-This plugin is deprecated and is not under active development. Team RabbitMQ recommends
-against its use.
+This plugin is **deprecated** and **is not under active development**. Team RabbitMQ **recommends
+against** its use.
 
 ## Binary Builds
 
