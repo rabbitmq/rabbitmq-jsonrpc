@@ -39,7 +39,7 @@ start(_Type, _StartArgs) ->
     rabbit_web_dispatch:register_context_handler(
         jsonrpc, Listener, RpcContext,
         fun(Req) ->
-            case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext, Req) of
+            case rfc4627_jsonrpc_mochiweb:handle("/" ++ RpcContext ++ "/", Req) of
                 no_match ->
                     Req:not_found();
                 {ok, Response} ->
