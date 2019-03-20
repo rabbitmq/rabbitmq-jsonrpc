@@ -9,8 +9,8 @@ None are provided by the RabbitMQ team (see above).
 
 ## Binary Builds for RabbitMQ 3.5.x
 
-Available from the [Community Plugins archive](http://www.rabbitmq.com/community-plugins/),
-as well as its dependency, [erlang-rfc4627](http://www.rabbitmq.com/community-plugins/v3.5.x/rfc4627_jsonrpc-3.5.x-git5e67120.ez).
+Available from the [Community Plugins archive](https://www.rabbitmq.com/community-plugins/),
+as well as its dependency, [erlang-rfc4627](https://www.rabbitmq.com/community-plugins/v3.5.x/rfc4627_jsonrpc-3.5.x-git5e67120.ez).
 
 ## Building From Source (RabbitMQ 3.5.x)
 
